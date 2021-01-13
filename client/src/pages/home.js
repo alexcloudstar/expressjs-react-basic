@@ -55,6 +55,8 @@ const Home = () => {
           <label htmlFor='img'>Image </label>
           <input type='file' name='img' id='img' />
           <br />
+          <label htmlFor='content'>Content </label>
+          <textarea name='content' id='content' cols='10' rows='3'></textarea>
         </form>
         <Feed>
           <h3>Feed</h3>
