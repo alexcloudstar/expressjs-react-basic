@@ -1,5 +1,5 @@
 import React from 'react';
-import { Header } from '../components/header/index';
+
 import styled from 'styled-components';
 
 const Feed = styled.div`
@@ -43,8 +43,19 @@ const FeedPosts = styled.div`
 const Home = () => {
   return (
     <>
-      <Header />
       <div className='home'>
+        <h3>Add post</h3>
+        <form action=''>
+          <label htmlFor='title'>Title </label>
+          <input type='text' name='title' id='title' />
+          <br />
+          <label htmlFor='creator'>Creator </label>
+          <input type='text' name='creator' id='creator' />
+          <br />
+          <label htmlFor='img'>Image </label>
+          <input type='file' name='img' id='img' />
+          <br />
+        </form>
         <Feed>
           <h3>Feed</h3>
           <FeedPosts>

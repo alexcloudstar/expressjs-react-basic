@@ -3,15 +3,18 @@ import styled from 'styled-components';
 
 const RegisterDiv = styled.div``;
 
-const Register = () => {
+export const Register = () => {
   return (
     <>
       <RegisterDiv>
-        <form action=''>
-          <input type='email' name='email' />
-          <input type='text' name='name' />
-          <input type='password' name='password' />
-        </form>
+        <h1>Register</h1>
+        <label htmlFor='email'>Email</label>
+        <input type='email' name='email' id='email' />
+        <label htmlFor='name'>Name</label>
+        <input type='text' name='name' id='name' />
+        <label htmlFor='password'>Password</label>
+        <input type='password' name='password' id='password' />
+        <button type='submit'>Login</button>
       </RegisterDiv>
     </>
   );
