@@ -1,8 +1,12 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import Home from '../pages/home';
 
 const App = () => {
-  return <div>Hello world!</div>;
+  return (
+    <>
+      <Home />
+    </>
+  );
 };
 
 export default App;
