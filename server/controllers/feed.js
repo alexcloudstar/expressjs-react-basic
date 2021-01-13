@@ -6,14 +6,24 @@ const { validationResult } = require('express-validator');
 const Post = require('../models/post');
 
 exports.getPosts = (req, res, next) => {
-  // TODO: Add pagination
+  const currentPage = req.query.page || 1;
+  const perPage = 2;
+  let totalItems;
 
   Post.find()
-    // TODO: Add pagination
+    .countDocuments()
+    .then(count => {
+      totalItems = count;
+
+      return Post.find()
+        .skip((currentPage - 1) * perPage)
+        .limit(perPage);
+    })
     .then(posts => {
       res.status(200).json({
         message: 'Fetched posts successfully.',
         posts: posts,
+        totalItems,
       });
     })
     .catch(err => {
@@ -34,7 +44,7 @@ exports.createPost = (req, res, next) => {
     throw error;
   }
 
-  // TODO: Create feature to upload images
+  // TODO Fix that
   // if (!req.img) {
   //   const error = new Error('No image provided');
   //   error.statusCode = 422;
@@ -49,10 +59,10 @@ exports.createPost = (req, res, next) => {
     title,
     content,
     imageUrl,
-    creator: 'Alexandru', // TODO: add user ID
+    creator: 'Alexandru', // TODO add user ID
   });
 
-  // TODO: add user as creator for post
+  // TODO add user as creator for post
 
   post
     .save()
@@ -98,9 +108,66 @@ exports.getPost = (req, res, next) => {
 };
 
 exports.updatePost = (req, res, next) => {
-  // TODO: Develope feature
+  const postId = req.params.postId;
+
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    const error = new Error('Validation failed, entered data is incorrect.');
+    error.statusCode = 422;
+    throw error;
+  }
+
+  const title = req.body.title;
+  const content = req.body.content;
+  // TODO fix to get image from req.body.img
+  let imageUrl = 'images/boat.jpg';
+
+  // TODO fix change the \ to /
+  // if (req.file) {
+  //   imageUrl = req.file.path.replace(/\\/g, '/');
+  // }
+
+  // TODO fix
+  // if (!imageUrl) {
+  //   const error = new Error('No file picked');
+  //   error.statusCode = 422;
+  //   throw error;
+  // }
+
+  Post.findById(postId)
+    .then(post => {
+      if (!post) {
+        const error = new Error('Could not find post.');
+        error.statusCode = 404;
+        throw error;
+      }
+
+      // TODO Add verification if user has permision to update post
+
+      // TODO check if imageUrl !== post.image
+      // TODO and delete the image
+
+      post.title = title;
+      post.imageUrl = imageUrl;
+      post.content = content;
+
+      return post.save();
+    })
+    .then(result => {
+      res.status(200).json({
+        message: 'Post updated!',
+        post: result,
+      });
+    })
+    .catch(err => {
+      if (!err.statusCode) {
+        err.statusCode = 500;
+      }
+
+      next(err);
+    });
 };
 
 exports.deletePost = (req, res, next) => {
-  // TODO: Develope feature
+  // TODO Develope feature
 };
