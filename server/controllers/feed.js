@@ -169,5 +169,30 @@ exports.updatePost = (req, res, next) => {
 };
 
 exports.deletePost = (req, res, next) => {
-  // TODO Develope feature
+  const postId = req.params.postId;
+
+  Post.findById(postId)
+    .then(post => {
+      if (!post) {
+        const error = new Error('Could not find post');
+        error.statusCode = 404;
+        throw error;
+      }
+
+      // TODO Check if user is logged in
+
+      // TODO remove the image from storage
+
+      return Post.findByIdAndRemove(postId);
+    })
+    .then(result => {
+      res.status(200).json({ message: 'Deleted post.' });
+    })
+    .catch(err => {
+      if (!err.statusCode) {
+        err.statusCode = 500;
+      }
+
+      next(err);
+    });
 };
