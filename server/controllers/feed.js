@@ -6,18 +6,35 @@ const { validationResult } = require('express-validator');
 const Post = require('../models/post');
 
 exports.getPosts = (req, res, next) => {
-  res.status(200).json({
-    posts: [
-      {
-        title: 'First Post',
-        creator: 'Alexandru',
-        content: 'This is the first post!',
-      },
-    ],
-  });
+  // TODO: Add pagination
+
+  Post.find()
+    // TODO: Add pagination
+    .then(posts => {
+      res.status(200).json({
+        message: 'Fetched posts successfully.',
+        posts: posts,
+      });
+    })
+    .catch(err => {
+      if (!err.statusCode) {
+        err.statusCode = 500;
+
+        next(err);
+      }
+    });
 };
 
 exports.createPost = (req, res, next) => {
+  const errors = validationResult(req);
+
+  if (!errors.isEmpty()) {
+    const error = new Error('Validation failed, entered data is incorrect.');
+    error.statusCode = 422;
+    throw error;
+  }
+
+  // TODO: Create feature to upload images
   // if (!req.img) {
   //   const error = new Error('No image provided');
   //   error.statusCode = 422;
@@ -32,8 +49,10 @@ exports.createPost = (req, res, next) => {
     title,
     content,
     imageUrl,
-    creator: 'Alexandru',
+    creator: 'Alexandru', // TODO: add user ID
   });
+
+  // TODO: add user as creator for post
 
   post
     .save()
@@ -42,7 +61,6 @@ exports.createPost = (req, res, next) => {
         message: 'Post created successfully!',
         post: post,
         creator: {
-          id: '1',
           name: creator,
         },
       });
