@@ -12,9 +12,12 @@ const NavbarEl = styled.div`
 
 const Logo = styled.div`
   h1 {
-    color: #625df5;
-    font-size: 20px;
-    font-weight: 600;
+    a {
+      color: #625df5;
+      font-size: 20px;
+      font-weight: 600;
+      text-decoration: none;
+    }
   }
 `;
 
@@ -32,7 +35,9 @@ export const Navbar = () => {
     <>
       <NavbarEl>
         <Logo>
-          <h1>Express JS - React Basic App</h1>
+          <h1>
+            <a href='/'>Express JS - React Basic App</a>
+          </h1>
         </Logo>
         <RegisterLinks>
           <a href='/register'>Register</a>
