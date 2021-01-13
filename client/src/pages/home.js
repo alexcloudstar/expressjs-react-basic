@@ -1,5 +1,5 @@
 import React from 'react';
-import { Header } from '../components/header/index';
+import { Header } from 'components/header';
 import styled from 'styled-components';
 
 const Feed = styled.div`
