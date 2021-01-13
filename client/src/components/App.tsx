@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useMemo } from 'react';
 import Routes from 'Routes';
 import { Header } from './header';
 
@@ -11,10 +11,10 @@ const App = () => {
   const dispatch = useDispatch();
   const postsData = useSelector((state: RootState) => state);
 
-  useEffect(() => {
-    dispatch(getPosts());
-    console.log(postsData);
-  }, [getPosts]);
+  useMemo(() => dispatch(getPosts()), [dispatch]);
+
+  console.log(postsData);
+  console.log(process.env.REACT_APP_API_URL);
 
   return (
     <>

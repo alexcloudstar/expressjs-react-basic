@@ -1,5 +1,3 @@
-import { AxiosResponse } from 'axios';
-
 export const GET_POSTS = 'GET_POSTS';
 
 export interface Posts {
@@ -17,7 +15,7 @@ export interface Posts {
 }
 
 export interface PostsState {
-  data: Posts | null | AxiosResponse;
+  data: Posts | null;
 
   // TODO loading
 }
