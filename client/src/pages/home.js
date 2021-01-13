@@ -27,7 +27,7 @@ const FeedPosts = styled.div`
   h4 {
     font-size: 20px;
     font-weight: 600;
-    color: yellow;
+    color: #1d899d;
   }
 
   h5,
