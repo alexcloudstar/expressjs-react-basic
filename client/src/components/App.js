@@ -1,10 +1,12 @@
 import React from 'react';
-import Home from 'pages/home';
+import Routes from 'Routes';
+import { Header } from './header';
 
 const App = () => {
   return (
     <>
-      <Home />
+      <Header />
+      <Routes />
     </>
   );
 };

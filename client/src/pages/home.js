@@ -43,7 +43,6 @@ const FeedPosts = styled.div`
 const Home = () => {
   return (
     <>
-      <Header />
       <div className='home'>
         <Feed>
           <h3>Feed</h3>
