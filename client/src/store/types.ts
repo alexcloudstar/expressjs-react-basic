@@ -1,9 +1,11 @@
-export const GET_POSTS = 'GET_POSTS';
+export const GET_FEED = 'GET_FEED';
+export const SET_LOADING = 'SET_LOADING';
 
-export interface Posts {
+export interface Feed {
   message: string;
   posts: [
     {
+      _id: string;
       title: string;
       content: string;
       imageUrl: string;
@@ -14,15 +16,18 @@ export interface Posts {
   totalItems: number;
 }
 
-export interface PostsState {
-  data: Posts | null;
-
-  // TODO loading
+export interface FeedState {
+  data: Feed | null;
+  loading: boolean;
 }
 
-interface GetPostsAction {
-  type: typeof GET_POSTS;
-  payload: Posts;
+interface SetLoadingAction {
+  type: typeof SET_LOADING;
 }
 
-export type PostsAction = GetPostsAction;
+interface GetFeedAction {
+  type: typeof GET_FEED;
+  payload: Feed;
+}
+
+export type FeedAction = GetFeedAction | SetLoadingAction;
