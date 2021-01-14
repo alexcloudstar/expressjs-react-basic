@@ -2,10 +2,10 @@ import { createStore, applyMiddleware, combineReducers } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly';
 import thunk from 'redux-thunk';
 
-import postsReducer from 'store/reducers/postsReducer';
+import feedReducer from 'store/reducers/feedReducer';
 
 const rootReducer = combineReducers({
-  posts: postsReducer,
+  posts: feedReducer,
 });
 
 const store = createStore(

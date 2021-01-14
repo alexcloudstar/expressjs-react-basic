@@ -1,6 +1,6 @@
-export const GET_POSTS = 'GET_POSTS';
+export const GET_FEED = 'GET_FEED';
 
-export interface Posts {
+export interface Feed {
   message: string;
   posts: [
     {
@@ -14,15 +14,15 @@ export interface Posts {
   totalItems: number;
 }
 
-export interface PostsState {
-  data: Posts | null;
+export interface FeedState {
+  data: Feed | null;
 
   // TODO loading
 }
 
-interface GetPostsAction {
-  type: typeof GET_POSTS;
-  payload: Posts;
+interface GetFeedAction {
+  type: typeof GET_FEED;
+  payload: Feed;
 }
 
-export type PostsAction = GetPostsAction;
+export type FeedAction = GetFeedAction;
