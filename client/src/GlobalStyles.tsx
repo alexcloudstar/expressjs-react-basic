@@ -1,5 +1,4 @@
 import { createGlobalStyle } from 'styled-components';
-import mern_bg from 'assets/mern_bg.jpg';
 
 const GlobalStyle = createGlobalStyle`
 html,
