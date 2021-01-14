@@ -4,6 +4,7 @@ export interface Feed {
   message: string;
   posts: [
     {
+      _id: string;
       title: string;
       content: string;
       imageUrl: string;

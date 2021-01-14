@@ -46,22 +46,33 @@ const FeedPosts = styled.div`
 
 const Feed = () => {
   const dispatch = useDispatch();
-  const feedData = useSelector((state: RootState) => state);
+  const feedData = useSelector((state: RootState) => state.posts.data);
 
   useMemo(() => dispatch(getFeed()), [dispatch]);
-
-  console.log(feedData);
 
   return (
     <>
       <FeedContainer>
-        <FeedPosts>
-          <h4>This is an awesome post title!</h4>
-          <h5>Created by: Alex Cloudstar</h5>
-          <h6>Date: 01-01-2020</h6>
-          <img alt='post-title' src='https://via.placeholder.com/150' />
-          <p>Here's an awesome description</p>
-        </FeedPosts>
+        {feedData &&
+          feedData.posts.map(post => {
+            console.log(post);
+            return (
+              <>
+                <FeedPosts key={post._id}>
+                  <h4>{post.title}</h4>
+                  <h5>Created by: {post.creator}</h5>
+                  <h6>
+                    Date: {new Date(post.createdAt).toLocaleDateString('en-US')}
+                  </h6>
+                  <img
+                    alt='post-title'
+                    src={`http://localhost:8080/${post.imageUrl}`}
+                  />
+                  <p>{post.content}</p>
+                </FeedPosts>
+              </>
+            );
+          })}
       </FeedContainer>
     </>
   );
