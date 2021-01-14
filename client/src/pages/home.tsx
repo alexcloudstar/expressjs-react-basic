@@ -8,6 +8,7 @@ import { getFeed } from 'store/actions/feedAction';
 import Feed from 'components/Feed';
 import { Loader } from 'components/Loader';
 import Pagination from 'components/pagination';
+import { AddPost } from 'components/AddPost';
 
 const Home = () => {
   const [currentPage, setCurrentPage] = useState<number>(1);
@@ -33,20 +34,8 @@ const Home = () => {
         </div>
       ) : (
         <div className='home'>
-          <h3>Add post</h3>
-          <form action=''>
-            <label htmlFor='title'>Title </label>
-            <input type='text' name='title' id='title' />
-            <br />
-            <label htmlFor='creator'>Creator </label>
-            <input type='text' name='creator' id='creator' />
-            <br />
-            <label htmlFor='img'>Image </label>
-            <input type='file' name='img' id='img' />
-            <br />
-            <label htmlFor='content'>Content </label>
-            <textarea name='content' id='content' cols={10} rows={3}></textarea>
-          </form>
+          {/* // TODO make a modal here on click open Add Post component  */}
+          <AddPost />
           <Feed posts={feedData?.posts} />
           <Pagination
             postsPerPage={postsPerPage}

@@ -1,7 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const PaginationWrapper = styled.div``;
+const PaginationWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 
 const Pagination = ({
   postsPerPage,
@@ -20,9 +24,7 @@ const Pagination = ({
       {pageNumbers.map(number => (
         <button
           key={number}
-          className={`page-item ${
-            currentPage === number ? 'active' : undefined
-          }`}
+          className={`page-item ${currentPage === number ? 'active' : ''}`}
           onClick={() => paginate(number)}
         >
           <span className='page-link'>{number}</span>
