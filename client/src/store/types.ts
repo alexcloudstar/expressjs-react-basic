@@ -1,4 +1,5 @@
 export const GET_FEED = 'GET_FEED';
+export const SET_LOADING = 'SET_LOADING';
 
 export interface Feed {
   message: string;
@@ -17,8 +18,11 @@ export interface Feed {
 
 export interface FeedState {
   data: Feed | null;
+  loading: boolean;
+}
 
-  // TODO loading
+interface SetLoadingAction {
+  type: typeof SET_LOADING;
 }
 
 interface GetFeedAction {
@@ -26,4 +30,4 @@ interface GetFeedAction {
   payload: Feed;
 }
 
-export type FeedAction = GetFeedAction;
+export type FeedAction = GetFeedAction | SetLoadingAction;

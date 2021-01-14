@@ -12,6 +12,7 @@ const Routes = () => {
       <main className='main'>
         <Switch>
           <Route exact path='/' component={Home} />
+          <Route exact path='/posts/page/:number' component={Login} />
           <Route path='/login' component={Login} />
           <Route path='/register' component={Register} />
         </Switch>
