@@ -1,12 +1,13 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 import styled from 'styled-components';
 
 // redux
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'store';
 import { getFeed } from 'store/actions/feedAction';
+import Pagination from 'components/pagination';
 
-const FeedContainer = styled.div`
+const FeedWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -45,14 +46,18 @@ const FeedPosts = styled.div`
 `;
 
 const Feed = () => {
+  const [feedPage, setFeedPage] = useState<any>(1);
   const dispatch = useDispatch();
   const feedData = useSelector((state: RootState) => state.posts.data);
+  const totalItems = useSelector(
+    (state: RootState) => state.posts.data?.totalItems
+  );
 
   useMemo(() => dispatch(getFeed()), [dispatch]);
 
   return (
     <>
-      <FeedContainer>
+      <FeedWrapper>
         {feedData &&
           feedData.posts.map(post => {
             console.log(post);
@@ -73,7 +78,8 @@ const Feed = () => {
               </>
             );
           })}
-      </FeedContainer>
+        <Pagination currentPage={feedPage} totalItems={totalItems} />
+      </FeedWrapper>
     </>
   );
 };
