@@ -39,7 +39,7 @@ const FeedPost = styled.div<{ imageUrl: any }>`
 const Feed = ({ posts }: any) => {
   return (
     <FeedWrapper>
-      {posts &&
+      {posts && posts.length ? (
         posts.map((post: any) => {
           return (
             <FeedPost
@@ -60,7 +60,12 @@ const Feed = ({ posts }: any) => {
               </div>
             </FeedPost>
           );
-        })}
+        })
+      ) : (
+        <div>
+          <h3>No posts found...</h3>
+        </div>
+      )}
     </FeedWrapper>
   );
 };
