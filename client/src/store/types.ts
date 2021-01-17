@@ -1,4 +1,7 @@
 export const GET_FEED = 'GET_FEED';
+export const CREATE_POST = 'CREATE_POST';
+export const DELETE_POST = 'DELETE_POST';
+export const GET_POST = 'GET_POST';
 export const SET_LOADING = 'SET_LOADING';
 
 export interface Feed {

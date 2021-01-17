@@ -51,7 +51,9 @@ exports.createPost = (req, res, next) => {
   //   throw error;
   // }
 
-  const imageUrl = 'images/boat.jpg';
+  console.log(req);
+
+  const imageUrl = req.file.path.replace(/\\/g, '/');
   const title = req.body.title;
   const content = req.body.content;
   let creator;
