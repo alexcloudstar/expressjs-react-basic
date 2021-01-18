@@ -280,3 +280,6 @@ $RECYCLE.BIN/
 # .pnp.*
 
 # End of https://www.toptal.com/developers/gitignore/api/webstorm,node,vscode,react,windows,yarn
+
+# images
+./images/*

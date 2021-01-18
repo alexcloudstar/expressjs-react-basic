@@ -38,7 +38,7 @@ app.use(
   multer({
     storage: fileStorage,
     fileFilter: fileFilter,
-  }).single('image')
+  }).single('image') // on front-end need to be <input name="name" />
 );
 
 app.use('/images', express.static(path.join(__dirname, 'images')));
