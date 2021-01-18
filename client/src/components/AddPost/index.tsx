@@ -20,7 +20,6 @@ const AddPostWrapper = styled.div`
 
 export const AddPost = () => {
   const [title, setTitle] = useState('');
-  const [creator, setCreator] = useState('');
   const [image, setImage] = useState<any>();
   const [content, setContent] = useState('');
 
@@ -32,7 +31,6 @@ export const AddPost = () => {
     const data = new FormData();
 
     data.append('title', title);
-    data.append('creator', creator);
     data.append('image', image);
     data.append('content', content);
 
@@ -51,16 +49,6 @@ export const AddPost = () => {
           value={title}
           onChange={e => setTitle(e.target.value)}
           placeholder='Title'
-        />
-        <br />
-        <label htmlFor='creator'>Creator </label>
-        <input
-          type='text'
-          name='creator'
-          id='creator'
-          value={creator}
-          onChange={e => setCreator(e.target.value)}
-          placeholder='Creator'
         />
         <br />
         <label htmlFor='image'>Image </label>
