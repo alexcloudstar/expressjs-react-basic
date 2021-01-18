@@ -45,13 +45,11 @@ exports.createPost = (req, res, next) => {
   }
 
   // TODO Fix that
-  // if (!req.img) {
-  //   const error = new Error('No image provided');
-  //   error.statusCode = 422;
-  //   throw error;
-  // }
-
-  console.log(req);
+  if (!req.file) {
+    const error = new Error('No image provided');
+    error.statusCode = 422;
+    throw error;
+  }
 
   const imageUrl = req.file.path.replace(/\\/g, '/');
   const title = req.body.title;
@@ -122,12 +120,11 @@ exports.updatePost = (req, res, next) => {
   const title = req.body.title;
   const content = req.body.content;
   // TODO fix to get image from req.body.img
-  let imageUrl = 'images/boat.jpg';
+  let imageUrl = req.body.img;
 
-  // TODO fix change the \ to /
-  // if (req.file) {
-  //   imageUrl = req.file.path.replace(/\\/g, '/');
-  // }
+  if (req.file) {
+    imageUrl = req.file.path.replace(/\\/g, '/');
+  }
 
   // TODO fix
   // if (!imageUrl) {

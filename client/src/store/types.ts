@@ -4,6 +4,7 @@ export const DELETE_POST = 'DELETE_POST';
 export const GET_POST = 'GET_POST';
 export const SET_LOADING = 'SET_LOADING';
 
+// @ GET POSTS
 export interface Feed {
   message: string;
   posts: [
@@ -29,6 +30,7 @@ interface GetFeedAction {
   payload: Feed;
 }
 
+// @ CREATE POST
 export interface CreatePost {
   title: string;
   content: string;
@@ -46,6 +48,27 @@ interface CPostAction {
   payload: CreatePost;
 }
 
+// @ GET POST
+export interface GetPost {
+  _id: string;
+  title: string;
+  content: string;
+  imageUrl: string;
+  creator: string;
+  updatedAt: string;
+}
+
+export interface GetPostState {
+  data: GetPost | null;
+  loading: boolean;
+}
+
+interface GPostAction {
+  type: typeof GET_POST;
+  payload: GetPost;
+}
+
+// @ DELETE POST
 export interface DeletePost {
   _id: string;
 }
@@ -60,10 +83,13 @@ interface DPostAction {
   payload: DeletePost;
 }
 
+// @ SET LOADING
+
 interface SetLoadingAction {
   type: typeof SET_LOADING;
 }
 
 export type FeedAction = GetFeedAction | SetLoadingAction;
 export type CreatePostAction = CPostAction | SetLoadingAction;
+export type GetPostAction = GPostAction | SetLoadingAction;
 export type DeletePostAction = DPostAction | SetLoadingAction;
