@@ -4,6 +4,7 @@ import styled from 'styled-components';
 // redux
 import { useDispatch } from 'react-redux';
 import { deletePostAction } from 'store/actions/deletePostAction';
+import { Link } from 'react-router-dom';
 
 const FeedWrapper = styled.div`
   display: grid;
@@ -37,6 +38,12 @@ const FeedPost = styled.div<{ imageUrl: any }>`
     color: #ff623e;
     border-radius: 5px;
     background-color: rgba(23, 64, 25, 0.8);
+
+    button {
+      a {
+        color: #fff;
+      }
+    }
   }
 `;
 
@@ -47,15 +54,14 @@ const Feed = ({ posts }: any) => {
     dispatch(deletePostAction(_id));
   };
 
+  const apiURL = 'http://localhost:8080';
+
   return (
     <FeedWrapper>
       {posts && posts.length ? (
         posts.map((post: any) => {
           return (
-            <FeedPost
-              imageUrl={`http://localhost:8080/${post.imageUrl}`}
-              key={post._id}
-            >
+            <FeedPost imageUrl={`${apiURL}/${post.imageUrl}`} key={post._id}>
               <div>
                 <h4>{post.title}</h4>
                 <h5>Created by: {post.creator}</h5>
@@ -63,6 +69,9 @@ const Feed = ({ posts }: any) => {
                   Date: {new Date(post.createdAt).toLocaleDateString('en-US')}
                 </h6>
                 <p>{post.content}</p>
+                <button>
+                  <Link to={`/post/${post._id}`}>View</Link>
+                </button>
                 <button onClick={_id => deletePost(post._id)}>Delete</button>
               </div>
             </FeedPost>
