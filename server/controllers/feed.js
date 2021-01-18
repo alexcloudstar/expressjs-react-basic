@@ -122,19 +122,19 @@ exports.updatePost = (req, res, next) => {
   const title = req.body.title;
   const content = req.body.content;
   // TODO fix to get image from req.body.img
-  let imageUrl = 'images/boat.jpg';
+  let imageUrl = req.body.img;
 
   // TODO fix change the \ to /
-  // if (req.file) {
-  //   imageUrl = req.file.path.replace(/\\/g, '/');
-  // }
+  if (req.file) {
+    imageUrl = req.file.path.replace(/\\/g, '/');
+  }
 
   // TODO fix
-  // if (!imageUrl) {
-  //   const error = new Error('No file picked');
-  //   error.statusCode = 422;
-  //   throw error;
-  // }
+  if (!imageUrl) {
+    const error = new Error('No file picked');
+    error.statusCode = 422;
+    throw error;
+  }
 
   Post.findById(postId)
     .then(post => {
