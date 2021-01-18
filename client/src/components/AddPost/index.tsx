@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-import api from 'api';
+// redux
+import { useDispatch } from 'react-redux';
+import { createPostAction } from 'store/actions/createPostAction';
 
 const AddPostWrapper = styled.div`
   display: flex;
@@ -22,6 +24,8 @@ export const AddPost = () => {
   const [image, setImage] = useState<any>();
   const [content, setContent] = useState('');
 
+  const dispatch = useDispatch();
+
   const submitHandler = (e: any) => {
     e.preventDefault();
 
@@ -32,29 +36,7 @@ export const AddPost = () => {
     data.append('image', image);
     data.append('content', content);
 
-    // const data = {
-    //   title,
-    //   creator,
-    //   image: image,
-    //   content,
-    // };
-
-    api
-      .post(`/post`, data)
-      .then(res => {
-        console.log(res);
-        alert(res.data.message);
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  };
-
-  const clickHandler = (formData: any) => {
-    // console.log(title);
-    // console.log(creator);
-    // console.log(content);
-    // console.log(image);
+    dispatch(createPostAction(data));
   };
 
   return (
@@ -98,9 +80,7 @@ export const AddPost = () => {
           onChange={e => setContent(e.target.value)}
           placeholder='Content'
         ></textarea>
-        <button type='submit' onClick={clickHandler}>
-          Submit
-        </button>
+        <button type='submit'>Submit</button>
       </form>
     </AddPostWrapper>
   );
