@@ -5,6 +5,7 @@ import thunk from 'redux-thunk';
 import feedReducer from 'store/reducers/feedReducer';
 import createPostReducer from './reducers/createPostReducer';
 import deletePostReducer from './reducers/deletePostReducer';
+import editPostReducer from './reducers/editPostReducer';
 import getPostReducer from './reducers/getPostReducer';
 
 const rootReducer = combineReducers({
@@ -12,6 +13,7 @@ const rootReducer = combineReducers({
   createPost: createPostReducer,
   deletePost: deletePostReducer,
   getPost: getPostReducer,
+  editPost: editPostReducer,
 });
 
 const store = createStore(

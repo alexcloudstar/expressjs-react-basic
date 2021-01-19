@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 
 const FeedWrapper = styled.div`
   display: grid;
-  padding: 4rem;
+  padding: 2rem;
   grid-gap: 4rem;
   margin: 0 auto;
   width: max-content;
@@ -47,6 +47,16 @@ const FeedPost = styled.div<{ imageUrl: any }>`
   }
 `;
 
+const PostActionsWrapper = styled.div`
+  display: flex;
+  padding: 0 !important;
+  color: initial !important;
+  background: none !important;
+  align-items: center !important;
+  border-radius: initial !important;
+  justify-content: center !important;
+`;
+
 const Feed = ({ posts }: any) => {
   const dispatch = useDispatch();
 
@@ -69,10 +79,12 @@ const Feed = ({ posts }: any) => {
                   Date: {new Date(post.createdAt).toLocaleDateString('en-US')}
                 </h6>
                 <p>{post.content}</p>
-                <button>
-                  <Link to={`/post/${post._id}`}>View</Link>
-                </button>
-                <button onClick={_id => deletePost(post._id)}>Delete</button>
+                <PostActionsWrapper>
+                  <button>
+                    <Link to={`/post/${post._id}`}>View</Link>
+                  </button>
+                  <button onClick={_id => deletePost(post._id)}>Delete</button>
+                </PostActionsWrapper>
               </div>
             </FeedPost>
           );

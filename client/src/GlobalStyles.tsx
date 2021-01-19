@@ -31,7 +31,7 @@ li {
 button {
   outline: none;
   color: #fff;
-  margin: 0 2rem;
+  margin: 0 0.5rem;
   font-size: 20px;
   cursor: pointer;
   padding: 0.5rem 1rem;

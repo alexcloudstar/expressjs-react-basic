@@ -282,4 +282,4 @@ $RECYCLE.BIN/
 # End of https://www.toptal.com/developers/gitignore/api/webstorm,node,vscode,react,windows,yarn
 
 # images
-./images/*
+server/images

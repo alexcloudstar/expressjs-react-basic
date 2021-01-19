@@ -44,7 +44,6 @@ exports.createPost = (req, res, next) => {
     throw error;
   }
 
-  // TODO Fix that
   if (!req.file) {
     const error = new Error('No image provided');
     error.statusCode = 422;
@@ -119,19 +118,17 @@ exports.updatePost = (req, res, next) => {
 
   const title = req.body.title;
   const content = req.body.content;
-  // TODO fix to get image from req.body.img
-  let imageUrl = req.body.img;
+  let imageUrl = req.body.image;
 
   if (req.file) {
     imageUrl = req.file.path.replace(/\\/g, '/');
   }
 
-  // TODO fix
-  // if (!imageUrl) {
-  //   const error = new Error('No file picked');
-  //   error.statusCode = 422;
-  //   throw error;
-  // }
+  if (!imageUrl) {
+    const error = new Error('No file picked');
+    error.statusCode = 422;
+    throw error;
+  }
 
   Post.findById(postId)
     .then(post => {
@@ -143,8 +140,9 @@ exports.updatePost = (req, res, next) => {
 
       // TODO Add verification if user has permision to update post
 
-      // TODO check if imageUrl !== post.image
-      // TODO and delete the image
+      if (imageUrl !== post.imageUrl) {
+        clearImage(post.imageUrl);
+      }
 
       post.title = title;
       post.imageUrl = imageUrl;
@@ -181,7 +179,7 @@ exports.deletePost = (req, res, next) => {
       // TODO Check if user is logged in
 
       // TODO remove the image from storage
-
+      clearImage(post.imageUrl);
       return Post.findByIdAndRemove(postId);
     })
     .then(result => {
@@ -194,4 +192,9 @@ exports.deletePost = (req, res, next) => {
 
       next(err);
     });
+};
+
+const clearImage = filePath => {
+  filePath = path.join(__dirname, '..', filePath);
+  fs.unlink(filePath, err => console.log(err));
 };

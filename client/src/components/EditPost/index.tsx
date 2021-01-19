@@ -1,0 +1,76 @@
+import React, { useState } from 'react';
+import styled from 'styled-components';
+
+// redux
+import { useDispatch } from 'react-redux';
+import { editPostAction } from 'store/actions/editPostAction';
+
+const EditPostWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  label {
+    display: block;
+    font-size: 18px;
+    font-weight: 500;
+  }
+`;
+
+export const EditPost = ({ postData }: any) => {
+  const [title, setTitle] = useState(postData.title);
+  const [image, setImage] = useState<any>(postData.image);
+  const [content, setContent] = useState(postData.content);
+
+  const dispatch = useDispatch();
+
+  const submitHandler = (e: any) => {
+    e.preventDefault();
+
+    const data = new FormData();
+
+    data.append('title', title);
+    data.append('image', image);
+    data.append('content', content);
+
+    dispatch(editPostAction(postData._id, data));
+  };
+
+  return (
+    <EditPostWrapper>
+      <h3>Edit post</h3>
+      <form id='add-post-form' onSubmit={submitHandler}>
+        <label htmlFor='title'>Title </label>
+        <input
+          type='text'
+          name='title'
+          id='title'
+          value={title}
+          onChange={e => setTitle(e.target.value)}
+          placeholder='Title'
+        />
+        <br />
+        <label htmlFor='image'>Image </label>
+        <input
+          type='file'
+          id='image'
+          name='image'
+          onChange={e => e.target.files && setImage(e.target.files[0])}
+        />
+        <br />
+        <label htmlFor='content'>Content </label>
+        <textarea
+          name='content'
+          id='content'
+          cols={10}
+          rows={3}
+          value={content}
+          onChange={e => setContent(e.target.value)}
+          placeholder='Content'
+        ></textarea>
+        <button type='submit'>Submit</button>
+      </form>
+    </EditPostWrapper>
+  );
+};

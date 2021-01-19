@@ -1,7 +1,8 @@
 export const GET_FEED = 'GET_FEED';
 export const CREATE_POST = 'CREATE_POST';
-export const DELETE_POST = 'DELETE_POST';
 export const GET_POST = 'GET_POST';
+export const DELETE_POST = 'DELETE_POST';
+export const EDIT_POST = 'EDIT_POST';
 export const SET_LOADING = 'SET_LOADING';
 
 // @ GET POSTS
@@ -83,6 +84,26 @@ interface DPostAction {
   payload: DeletePost;
 }
 
+// @ GET POST
+export interface EditPost {
+  _id: string;
+  title: string;
+  content: string;
+  imageUrl: string;
+  creator: string;
+  updatedAt: string;
+}
+
+export interface EditPostState {
+  data: EditPost | null;
+  loading: boolean;
+}
+
+interface EPostAction {
+  type: typeof EDIT_POST;
+  payload: EditPost;
+}
+
 // @ SET LOADING
 
 interface SetLoadingAction {
@@ -93,3 +114,4 @@ export type FeedAction = GetFeedAction | SetLoadingAction;
 export type CreatePostAction = CPostAction | SetLoadingAction;
 export type GetPostAction = GPostAction | SetLoadingAction;
 export type DeletePostAction = DPostAction | SetLoadingAction;
+export type EditPostAction = EPostAction | SetLoadingAction;
