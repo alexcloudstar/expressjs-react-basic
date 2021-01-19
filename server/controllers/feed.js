@@ -124,7 +124,7 @@ exports.updatePost = (req, res, next) => {
     imageUrl = req.file.path.replace(/\\/g, '/');
   }
 
-  if (!imageUrl) {
+  if (!req.file) {
     const error = new Error('No file picked');
     error.statusCode = 422;
     throw error;

@@ -12,10 +12,20 @@ router.get('/posts', feedController.getPosts);
 router.get('/post/:postId', feedController.getPost);
 
 // @ POST /feed/post
-router.post('/post', feedController.createPost);
+router.post(
+  '/post',
+  [body('title').trim().isLength({ min: 5 })],
+  [body('content').trim().isLength({ min: 5 })],
+  feedController.createPost
+);
 
 // @ PATCH /feed/post
-router.patch('/post/:postId', feedController.updatePost);
+router.patch(
+  '/post/:postId',
+  [body('title').trim().isLength({ min: 5 })],
+  [body('content').trim().isLength({ min: 5 })],
+  feedController.updatePost
+);
 
 // @ DELETE /feed/post
 router.delete('/post/:postId', feedController.deletePost);
