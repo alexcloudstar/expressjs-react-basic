@@ -3,9 +3,9 @@ import styled from 'styled-components';
 
 // redux
 import { useDispatch } from 'react-redux';
-import { createPostAction } from 'store/actions/posts/createPostAction';
+import { editPostAction } from 'store/actions/posts/editPostAction';
 
-const AddPostWrapper = styled.div`
+const EditPostWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -18,10 +18,10 @@ const AddPostWrapper = styled.div`
   }
 `;
 
-export const AddPost = () => {
-  const [title, setTitle] = useState('');
-  const [image, setImage] = useState<any>();
-  const [content, setContent] = useState('');
+export const EditPost = ({ postData }: any) => {
+  const [title, setTitle] = useState(postData.title);
+  const [image, setImage] = useState<any>(postData.image);
+  const [content, setContent] = useState(postData.content);
 
   const dispatch = useDispatch();
 
@@ -34,12 +34,12 @@ export const AddPost = () => {
     data.append('image', image);
     data.append('content', content);
 
-    dispatch(createPostAction(data));
+    dispatch(editPostAction(postData._id, data));
   };
 
   return (
-    <AddPostWrapper>
-      <h3>Add post</h3>
+    <EditPostWrapper>
+      <h3>Edit post</h3>
       <form id='add-post-form' onSubmit={submitHandler}>
         <div className='input-holder'>
           <label htmlFor='title'>Title </label>
@@ -68,12 +68,13 @@ export const AddPost = () => {
             id='content'
             cols={10}
             rows={3}
+            value={content}
             onChange={e => setContent(e.target.value)}
             placeholder='Content'
           ></textarea>
         </div>
         <button type='submit'>Submit</button>
       </form>
-    </AddPostWrapper>
+    </EditPostWrapper>
   );
 };

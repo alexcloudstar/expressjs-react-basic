@@ -10,12 +10,12 @@ body {
 
 body {
   overflow: hidden;
-  padding: 60px 70px;
+  padding: 30px 70px;
   background-image: linear-gradient(to right top, #ac2434, #b6273f, #bf2b4b, #c83057, #d13564);
 }
 
 #root {
-  padding: 2rem;
+  padding: 1.5rem;
   background: #fff;
   box-shadow: 3px 3px 14px 2px rgba(0,0,0,0.75);
 }
@@ -31,7 +31,7 @@ li {
 button {
   outline: none;
   color: #fff;
-  margin: 0 2rem;
+  margin: 0 0.5rem;
   font-size: 20px;
   cursor: pointer;
   padding: 0.5rem 1rem;
@@ -60,6 +60,18 @@ ul
  {
     font-family: 'Lobster', cursive,sans-serif, Arial, Helvetica;
     font-weight: 400;
+}
+
+.input-holder {
+
+  margin: 5px 0;
+
+  input,
+  textarea {
+    border: 0;
+    width: 100%;
+    border-bottom: 3px solid #5184b3;
+  }
 }
 
 

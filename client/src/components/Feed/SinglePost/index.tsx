@@ -1,9 +1,17 @@
 import React, { useMemo } from 'react';
+import styled from 'styled-components';
 
 // redux
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'store';
-import { getPostAction } from 'store/actions/getPostAction';
+import { getPostAction } from 'store/actions/posts/getPostAction';
+import { EditPost } from 'components/EditPost';
+
+const SinglePostWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+`;
 
 export const SinglePost = (props: any) => {
   const { postId } = props.match.params;
@@ -21,17 +29,25 @@ export const SinglePost = (props: any) => {
       {loading ? (
         <div>Loading</div>
       ) : (
-        <div>
-          <h4>Fetched post:</h4>
-          <h1>{postData?.title}</h1>
-          <h4>
-            Date:{' '}
-            {postData &&
-              new Date(postData.updatedAt).toLocaleDateString('en-US')}
-          </h4>
-          <img src={`${apiURL}/${postData?.imageUrl}`} alt={postData?.title} />
-          <h2>{postData?.content}</h2>
-        </div>
+        <SinglePostWrapper>
+          <div>
+            <h4>Fetched post:</h4>
+            <h1>{postData?.title}</h1>
+            <h4>
+              Date:{' '}
+              {postData &&
+                new Date(postData.updatedAt).toLocaleDateString('en-US')}
+            </h4>
+            <img
+              src={`${apiURL}/${postData?.imageUrl}`}
+              alt={postData?.title}
+            />
+            <h2>{postData?.content}</h2>
+          </div>
+          <div>
+            <EditPost postData={postData} />
+          </div>
+        </SinglePostWrapper>
       )}
     </>
   );

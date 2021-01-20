@@ -4,8 +4,8 @@ import { Switch, Route } from 'react-router-dom';
 
 import Home from 'pages/home';
 import { SinglePost } from 'components/Feed/SinglePost';
-import { Login } from 'pages/login';
-import { Register } from 'pages/register';
+import { Login } from 'pages/Auth/login';
+import { Register } from 'pages/Auth/register';
 
 const Routes = () => {
   return (
