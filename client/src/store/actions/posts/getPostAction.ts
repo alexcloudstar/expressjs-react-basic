@@ -9,7 +9,7 @@ export const getPostAction = (
 ): ThunkAction<void, RootState, null, GetPostAction> => {
   return async dispatch => {
     try {
-      const res = await api.get(`/post/${_id}`);
+      const res = await api.get(`/feed/post/${_id}`);
 
       const resData: GetPost = await res.data.post;
 

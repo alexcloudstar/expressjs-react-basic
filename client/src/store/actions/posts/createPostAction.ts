@@ -14,7 +14,7 @@ export const createPostAction = (
 ): ThunkAction<void, RootState, null, CreatePostAction> => {
   return async dispatch => {
     try {
-      const res = await api.post('post', data);
+      const res = await api.post('/feed/post', data);
 
       const resData: CreatePost = await res.data;
 

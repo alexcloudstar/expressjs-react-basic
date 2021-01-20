@@ -14,7 +14,7 @@ export const deletePostAction = (
 ): ThunkAction<void, RootState, null, DeletePostAction> => {
   return async dispatch => {
     try {
-      const res = await api.delete(`/post/${_id}`);
+      const res = await api.delete(`/feed/post/${_id}`);
 
       alert(res.data.message);
 

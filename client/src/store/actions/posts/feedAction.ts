@@ -9,7 +9,7 @@ export const getFeed = (
 ): ThunkAction<void, RootState, null, FeedAction> => {
   return async dispatch => {
     try {
-      const res = await api.get(`/posts?page=${pageNo}`);
+      const res = await api.get(`/feed/posts?page=${pageNo}`);
 
       const resData: Feed = await res.data;
 
