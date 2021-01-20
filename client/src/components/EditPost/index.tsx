@@ -41,34 +41,38 @@ export const EditPost = ({ postData }: any) => {
     <EditPostWrapper>
       <h3>Edit post</h3>
       <form id='add-post-form' onSubmit={submitHandler}>
-        <label htmlFor='title'>Title </label>
-        <input
-          type='text'
-          name='title'
-          id='title'
-          value={title}
-          onChange={e => setTitle(e.target.value)}
-          placeholder='Title'
-        />
-        <br />
-        <label htmlFor='image'>Image </label>
-        <input
-          type='file'
-          id='image'
-          name='image'
-          onChange={e => e.target.files && setImage(e.target.files[0])}
-        />
-        <br />
-        <label htmlFor='content'>Content </label>
-        <textarea
-          name='content'
-          id='content'
-          cols={10}
-          rows={3}
-          value={content}
-          onChange={e => setContent(e.target.value)}
-          placeholder='Content'
-        ></textarea>
+        <div className='input-holder'>
+          <label htmlFor='title'>Title </label>
+          <input
+            type='text'
+            name='title'
+            id='title'
+            value={title}
+            onChange={e => setTitle(e.target.value)}
+            placeholder='Title'
+          />
+        </div>
+        <div className='input-holder'>
+          <label htmlFor='image'>Image </label>
+          <input
+            type='file'
+            id='image'
+            name='image'
+            onChange={e => e.target.files && setImage(e.target.files[0])}
+          />
+        </div>
+        <div className='input-holder'>
+          <label htmlFor='content'>Content </label>
+          <textarea
+            name='content'
+            id='content'
+            cols={10}
+            rows={3}
+            value={content}
+            onChange={e => setContent(e.target.value)}
+            placeholder='Content'
+          ></textarea>
+        </div>
         <button type='submit'>Submit</button>
       </form>
     </EditPostWrapper>

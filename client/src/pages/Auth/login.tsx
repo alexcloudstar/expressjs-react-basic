@@ -6,7 +6,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { loginAction } from 'store/actions/auth/loginAction';
 import { RootState } from 'store';
 
-const LoginDiv = styled.div``;
+const LoginDiv = styled.div`
+  padding: 0 12rem 2rem 12rem;
+`;
+
+const StyledButton = styled.button`
+  margin-top: 2rem;
+`;
 
 export const Login = () => {
   const [email, setEmail] = useState<string>('');
@@ -37,23 +43,27 @@ export const Login = () => {
       <LoginDiv>
         <h1>Login</h1>
         <form id='login-user-form' onSubmit={submitHandler}>
-          <label htmlFor='email'>Email</label>
-          <input
-            type='email'
-            name='email'
-            value={email}
-            onChange={e => setEmail(e.target.value)}
-            placeholder={'Please enter your email'}
-          />
-          <label htmlFor='password'>Password</label>
-          <input
-            type='password'
-            name='password'
-            value={password}
-            onChange={e => setPassword(e.target.value)}
-            placeholder='Enter your password'
-          />
-          <button type='submit'>Login</button>
+          <div className='input-holder'>
+            <label htmlFor='email'>Email</label>
+            <input
+              type='email'
+              name='email'
+              value={email}
+              onChange={e => setEmail(e.target.value)}
+              placeholder={'Please enter your email'}
+            />
+          </div>
+          <div className='input-holder'>
+            <label htmlFor='password'>Password</label>
+            <input
+              type='password'
+              name='password'
+              value={password}
+              onChange={e => setPassword(e.target.value)}
+              placeholder='Enter your password'
+            />
+          </div>
+          <StyledButton type='submit'>Login</StyledButton>
         </form>
       </LoginDiv>
     </>
