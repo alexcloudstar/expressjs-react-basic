@@ -10,7 +10,7 @@ module.exports = (req, res, next) => {
     throw error;
   }
 
-  const token = authHeader.split(' ')[0];
+  const token = authHeader.split(' ')[1];
   let decodedToken;
 
   try {

@@ -10,7 +10,11 @@ export const editPostAction = (
 ): ThunkAction<void, RootState, null, EditPostAction> => {
   return async dispatch => {
     try {
-      const res = await api.patch(`/feed/post/${_id}`, data);
+      const res = await api.patch(`/feed/post/${_id}`, data, {
+        headers: {
+          Authorization: 'Bearer ' + localStorage.getItem('token'),
+        },
+      });
 
       alert(res.data.message);
 

@@ -1,9 +1,10 @@
-import React, { FormEvent, useState } from 'react';
+import React, { FormEvent, useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 // redux
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { loginAction } from 'store/actions/auth/loginAction';
+import { RootState } from 'store';
 
 const LoginDiv = styled.div``;
 
@@ -11,7 +12,14 @@ export const Login = () => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
 
+  const loginData = useSelector((state: RootState) => state.loginReducer.data);
+
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    loginData && localStorage.setItem('token', loginData.token);
+    loginData && localStorage.setItem('userId', loginData.userId);
+  }, [loginData]);
 
   const submitHandler = (e: FormEvent) => {
     e.preventDefault();

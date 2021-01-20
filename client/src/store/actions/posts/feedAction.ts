@@ -9,7 +9,11 @@ export const getFeed = (
 ): ThunkAction<void, RootState, null, FeedAction> => {
   return async dispatch => {
     try {
-      const res = await api.get(`/feed/posts?page=${pageNo}`);
+      const res = await api.get(`/feed/posts?page=${pageNo}`, {
+        headers: {
+          Authorization: 'Bearer ' + localStorage.getItem('token'),
+        },
+      });
 
       const resData: Feed = await res.data;
 
