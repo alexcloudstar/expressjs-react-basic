@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { FormEvent, useState } from 'react';
 import styled from 'styled-components';
 
 // redux
@@ -14,7 +14,7 @@ export const Register = () => {
 
   const dispatch = useDispatch();
 
-  const submitHandler = (e: any) => {
+  const submitHandler = (e: FormEvent) => {
     e.preventDefault();
 
     const data = new FormData();

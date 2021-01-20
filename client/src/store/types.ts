@@ -4,6 +4,7 @@ export const GET_POST = 'GET_POST';
 export const DELETE_POST = 'DELETE_POST';
 export const EDIT_POST = 'EDIT_POST';
 export const PUT_SIGNUP = 'PUT_SIGNUP';
+export const POST_LOGIN = 'POST_LOGIN';
 export const SET_LOADING = 'SET_LOADING';
 
 // @ GET POSTS
@@ -122,6 +123,22 @@ interface PSignupAction {
   payload: Signup;
 }
 
+// @ POST LOGIN
+export interface Login {
+  email: string;
+  password: string;
+}
+
+export interface LoginState {
+  data: Login | null;
+  loading: boolean;
+}
+
+interface PLoginAction {
+  type: typeof POST_LOGIN;
+  payload: Login;
+}
+
 // @ SET LOADING
 
 interface SetLoadingAction {
@@ -137,3 +154,4 @@ export type EditPostAction = EPostAction | SetLoadingAction;
 
 // auth
 export type SignupAction = PSignupAction | SetLoadingAction;
+export type LoginAction = PLoginAction | SetLoadingAction;

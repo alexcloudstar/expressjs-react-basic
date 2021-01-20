@@ -8,6 +8,7 @@ import deletePostReducer from 'store/reducers/posts/deletePostReducer';
 import editPostReducer from 'store/reducers/posts/editPostReducer';
 import getPostReducer from 'store/reducers/posts/getPostReducer';
 import signupReducer from 'store/reducers/auth/signupReducer';
+import loginReducer from 'store/reducers/auth/loginReducer';
 
 const rootReducer = combineReducers({
   posts: feedReducer,
@@ -16,6 +17,7 @@ const rootReducer = combineReducers({
   getPost: getPostReducer,
   editPost: editPostReducer,
   signupReducer: signupReducer,
+  loginReducer: loginReducer,
 });
 
 const store = createStore(
