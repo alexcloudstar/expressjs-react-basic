@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 // redux
 import { useDispatch } from 'react-redux';
-import { createPostAction } from 'store/actions/createPostAction';
+import { createPostAction } from 'store/actions/posts/createPostAction';
 
 const AddPostWrapper = styled.div`
   display: flex;

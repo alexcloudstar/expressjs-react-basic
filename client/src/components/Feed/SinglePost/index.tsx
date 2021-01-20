@@ -4,7 +4,7 @@ import styled from 'styled-components';
 // redux
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'store';
-import { getPostAction } from 'store/actions/getPostAction';
+import { getPostAction } from 'store/actions/posts/getPostAction';
 import { EditPost } from 'components/EditPost';
 
 const SinglePostWrapper = styled.div`

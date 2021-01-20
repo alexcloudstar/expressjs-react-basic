@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 // redux
 import { useDispatch } from 'react-redux';
-import { deletePostAction } from 'store/actions/deletePostAction';
+import { deletePostAction } from 'store/actions/posts/deletePostAction';
 import { Link } from 'react-router-dom';
 
 const FeedWrapper = styled.div`

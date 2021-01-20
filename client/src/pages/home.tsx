@@ -4,7 +4,7 @@ import styled from 'styled-components';
 // redux
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'store';
-import { getFeed } from 'store/actions/feedAction';
+import { getFeed } from 'store/actions/posts/feedAction';
 
 import Feed from 'components/Feed';
 import { Loader } from 'components/Loader';

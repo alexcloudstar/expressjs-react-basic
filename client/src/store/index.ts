@@ -2,11 +2,11 @@ import { createStore, applyMiddleware, combineReducers } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly';
 import thunk from 'redux-thunk';
 
-import feedReducer from 'store/reducers/feedReducer';
-import createPostReducer from './reducers/createPostReducer';
-import deletePostReducer from './reducers/deletePostReducer';
-import editPostReducer from './reducers/editPostReducer';
-import getPostReducer from './reducers/getPostReducer';
+import feedReducer from 'store/reducers/posts/feedReducer';
+import createPostReducer from 'store/reducers/posts/createPostReducer';
+import deletePostReducer from 'store/reducers/posts/deletePostReducer';
+import editPostReducer from 'store/reducers/posts/editPostReducer';
+import getPostReducer from 'store/reducers/posts/getPostReducer';
 
 const rootReducer = combineReducers({
   posts: feedReducer,
